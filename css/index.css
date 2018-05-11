@@ -1,4 +1,5 @@
 
+
 :root{
 	--darkColor:rgb(10,10,20);
 	--lightColor: rgb(245,245,250);
@@ -66,12 +67,90 @@ body {
 	border-bottom:2px solid var(--darkColor);
 }
 
-#canvas{
+#timerInput{
+	display: flex;
 	position: absolute;
-	margin-top:7%;
-	left:200px;
-	right:200px;
-	height:80%;
+	justify-content: space-between;
+	align-content: center;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	margin-top:300px;
+	width:900px;
+	z-index: 10;
+}
+
+
+.timeInput{
+	display: inline-block;
+	width:33.3%;
+	height: 100px;
+	text-align: center;
+	font-size: 20pt;
+	outline:none;
+	background-color: var(--lightColor);
+	border-color: var(--darkColor);
+	border:2px solid;
+	border-radius: 1px;
+}
+
+.timerInput:focus{
+	outline:none;
+}
+
+#hours{
+	border-right:1px dashed;
+	border-bottom-left-radius: 6px;
+	border-top-left-radius: 6px;
+}
+#minutes{
+	border-left:1px dashed;
+	border-right:1px dashed;
+}
+#seconds{
+	border-left:1px dashed;
+	border-bottom-right-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+#timerGoButton{
+	display: block;
+	position: absolute;
+	border-color: var(--darkColor);
+	border:2px solid;
+	width:180px;
+	height: 70px;
+	line-height: 70px;
+	left:0;
+	right:0;
+	margin:0 auto;
+	top:440px;
+	border-radius: 6px;
+	font-size: 18pt;
+	z-index: 10;
+	transition-duration: .15s;
+	cursor: pointer;
+}
+
+#timerGoButton:hover{
+	line-height: 60px;
+	font-size: 19pt;
+	text-shadow: 0 2px 3px rgba(150,150,150,.8);
+}
+
+#timerDisplay{
+	font-family: 'Roboto', monospace;
+	display: none;
+	position: absolute;
+	font-size: 90pt;
+	font-weight: normal;
+	left:0;
+	right:0;
+	margin:0 auto;
+	z-index: 10;
+	top:50%;
+	transform: translateY(-50%);
+	pointer-events: none;
 }
 
 @media(min-width:800px){
@@ -80,4 +159,89 @@ body {
 	}
 }
 
+canvas{
+	display: block;
+	position: absolute;
+	left:0;
+	right: 0;
+	top:50%;
+	transform: translateY(-50%);
+	height: 600px;
+	width: 600px;
+	margin:0 auto;
+	border-radius: 100vw;
+	z-index: 1;
+	cursor: pointer;
+}
 
+.icon{
+	display:none;
+	pointer-events: none;
+	position: absolute;
+	background-color:rgba(40,40,80,.06);
+	top:50%;
+	transform: translateY(-50%);
+	left:0;
+	right:0;
+	width:585px;
+	height: 585px;
+	margin:0 auto;
+	border-radius: 100vw;
+	z-index: 2;
+	line-height: 600px;
+	font-size: 120pt;
+}
+
+.icon img{
+	position: relative;
+	width:120px;
+	height:120px;
+	top:50%;
+	transform: translateY(-50%);
+}
+
+#resetIcon{
+	display: none;
+	position: absolute;
+	top:50%;
+	transform: translateY(-50%);
+	left:740px;
+	right:0;
+	width:min-content;
+	height: auto;
+	margin:0 auto;
+	border-radius: 100vw;
+	z-index: 2;
+	line-height: 600px;
+	font-size: 120pt;
+	cursor: pointer;
+}
+
+#resetIcon img{
+	position: relative;
+	width:70px;
+	height:70px;
+}
+
+#newTimerIcon{
+	display: none;
+	position: absolute;
+	top:50%;
+	transform: translateY(-50%);
+	right:740px;
+	left:0;
+	width:min-content;
+	height: auto;
+	margin:0 auto;
+	border-radius: 100vw;
+	z-index: 2;
+	line-height: 600px;
+	font-size: 120pt;
+	cursor: pointer;
+}
+
+#newTimerIcon img{
+	position: relative;
+	width:70px;
+	height:70px;
+}

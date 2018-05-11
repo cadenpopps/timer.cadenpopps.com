@@ -13,13 +13,18 @@ const STOPWATCH = 1;
 const ALARM = 2;
 
 mode = TIMER;
+colorMode = LIGHT;
+
+var timer = undefined;
 
 // rgb(245,245,250)
 function setup() {
-    createCanvas($("#canvas").width(), $("#canvas").height(), "canvas");
+    createCanvas(600, 600);
     fill(f[0], f[1], f[2]);
     stroke(f[0], f[1], f[2]);
     strokeWidth(2);
+
+    listen('mouseclicked');
 
     loop();
 }
@@ -28,22 +33,27 @@ function draw() {
     background(b[0], b[1], b[2]);
 
     if (mode == TIMER) {
-        strokeRect(width / 8, 80, (width / 8) * 6, 120);
+        if (timer !== undefined) {
+            $("#timerDisplay").html(timer.getTimeString());
+            timer.draw();
+        }
     }
     else if (mode == STOPWATCH) {
         strokeRect(width / 8, 120, (width / 8) * 6, 140);
     }
 }
 
-function colorMode(m) {
-    if (m == LIGHT) {
-        b = light;
-        f = dark;
+function mouseClicked() {
+    if (timer != undefined && dist(mouseX, mouseY, width / 2, height / 2) < 300) {
+        if (timer.running) {
+            timer.pause();
+            $('#pauseIcon').css('display', 'none');
+            $('#resumeIcon').css('display', 'block');
+        }
+        else {
+            timer.resume();
+            $('#pauseIcon').css('display', 'block');
+            $('#resumeIcon').css('display', 'none');
+        }
     }
-    else if (m == DARK) {
-        b = dark;
-        f = light;
-    }
-    fill(f[0], f[1], f[2]);
-    stroke(f[0], f[1], f[2]);
 }
